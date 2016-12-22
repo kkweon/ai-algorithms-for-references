@@ -1,4 +1,3 @@
-import math
 # -----------
 # User Instructions
 #
@@ -70,4 +69,14 @@ def smooth(path, weight_data=0.5, weight_smooth=0.1, tolerance=0.000001):
                     newpath[i] = [x_new, y_new]
     return newpath  # Leave this line for the grader!
 
-printpaths(path, smooth(path))
+printpaths(path, smooth(path, weight_data=0.5))
+
+# Visualization
+import matplotlib.pyplot as plt
+import numpy as np
+
+plt.scatter(np.array(smooth(path))[:, 0],np.array(smooth(path))[:, 1], marker='o', c='blue', label="New Path")
+plt.scatter(np.array(path)[:, 0], np.array(path)[:, 1], marker='^', c='red', label="original point")
+plt.grid()
+plt.legend()
+plt.show()
