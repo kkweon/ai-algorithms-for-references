@@ -68,6 +68,7 @@ def smooth(path, weight_data=0.1, weight_smooth=0.1, tolerance=0.00001):
     change = True
     while change:
         change = False
+        err = 0.0
         for i in xrange(max_length):
             previous_x, previous_y = newpath[(i - 1) % max_length]
             current_x, current_y = newpath[i]
@@ -82,9 +83,10 @@ def smooth(path, weight_data=0.1, weight_smooth=0.1, tolerance=0.00001):
                 (real_y - current_y) + weight_smooth * \
                 (next_y + previous_y - 2.0 * current_y)
 
-            if abs(x_new - current_x) >= tolerance or abs(y_new - current_y) >= tolerance:
-                change = True
-                newpath[i] = [x_new, y_new]
+            newpath[i] = [x_new, y_new]
+            err += abs(x_new - current_x) + abs(y_new - current_y)
+        if err >= tolerance:
+            change = True
     return newpath
 
 # thank you - EnTerr - for posting this on our discussion forum
