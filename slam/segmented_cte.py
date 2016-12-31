@@ -456,8 +456,8 @@ def run(grid, goal, spath, params, printflag=False, speed=0.1, timeout=1000):
 
         ### ENTER CODE HERE
         # print estimate  => (x, y, orientation)
-        current_point = spath[index%len(spath)]
-        next_point = spath[(index + 1)%len(spath)]
+        current_point = spath[index]
+        next_point = spath[(index + 1)]
 
         R_x = estimate[0] - current_point[0]
         R_y = estimate[1] - current_point[1]
@@ -465,8 +465,11 @@ def run(grid, goal, spath, params, printflag=False, speed=0.1, timeout=1000):
         D_x = next_point[0] - current_point[0]
         D_y = next_point[1] - current_point[1]
 
+        u = (R_x * D_x + R_y * D_y) / (D_x ** 2 + D_y ** 2) # check which path it belongs to
         cte = (R_y * D_x - R_x * D_y) / (D_x * D_x + D_y * D_y)
-        index += 1 
+
+        if u > 1.0:
+            index += 1 
         # ----------------------------------------
 
         diff_cte += cte
