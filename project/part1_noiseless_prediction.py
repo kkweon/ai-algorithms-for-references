@@ -60,6 +60,23 @@ from math import *
 from matrix import *
 import random
 import numpy as np
+import argparse
+
+
+parser = argparse.ArgumentParser(description='Part 1. Noiseless Prediction')
+parser.add_argument('--visualize', 
+                    action="store_true",
+                    help='Visualize the robot')
+
+parser.add_argument('--verbose', 
+                    action="store_true",
+                    help='Verbose the prediction and the robot')
+
+args = parser.parse_args()
+
+if args.verbose:
+    print "Verbose is on"
+
 
 # This is the function you have to write. The argument 'measurement' is a 
 # single (x, y) point. This function will have to be called multiple
@@ -96,6 +113,50 @@ def vector_addition(vector1, vector2):
     return [a + x, b + y]
 
 
+# def estimate_next_pos(measurement, OTHER = None):
+#     """Estimate the next (x, y) position of the wandering Traxbot
+#     based on noisy (x, y) measurements."""
+
+#     # You must return xy_estimate (x, y), and OTHER (even if it is None) 
+#     # in this order for grading purposes.
+#     if OTHER == None:
+#         # First Measurement
+#         OTHER = dict()
+#         OTHER['measurements'] = [measurement]
+#         xy_estimate = measurement
+#     else:
+#         OTHER['measurements'].append(measurement)
+
+#         if len(OTHER['measurements']) > 3:
+#             OTHER['measurements'].pop(0)
+
+#         if len(OTHER['measurements']) >= 3:
+
+#             first_point = OTHER['measurements'][0]
+#             second_point = OTHER['measurements'][1]
+#             third_point = OTHER['measurements'][2]
+
+#             dist = distance_between(third_point, second_point)
+
+#             early_vector = vector_minus(second_point, first_point)
+#             latter_vector = vector_minus(third_point, second_point)
+
+#             angle_between = get_angle_between(early_vector, latter_vector) + atan2(latter_vector[1], latter_vector[0])#radian
+
+#             x_vec_pred = cos(angle_between) * dist
+#             y_vec_pred = sin(angle_between) * dist
+
+#             xy_estimate = vector_addition(measurement, [x_vec_pred, y_vec_pred])
+
+#         else:
+#             xy_estimate = measurement
+
+
+#     return xy_estimate, OTHER 
+
+
+from kalmanfilter import KalmanFilter
+
 def estimate_next_pos(measurement, OTHER = None):
     """Estimate the next (x, y) position of the wandering Traxbot
     based on noisy (x, y) measurements."""
@@ -104,36 +165,10 @@ def estimate_next_pos(measurement, OTHER = None):
     # in this order for grading purposes.
     if OTHER == None:
         # First Measurement
-        OTHER = dict()
-        OTHER['measurements'] = [measurement]
+        OTHER = KalmanFilter(1e-10, measurement[0], measurement[1])
         xy_estimate = measurement
     else:
-        OTHER['measurements'].append(measurement)
-
-        if len(OTHER['measurements']) > 3:
-            OTHER['measurements'].pop(0)
-
-        if len(OTHER['measurements']) >= 3:
-
-            first_point = OTHER['measurements'][0]
-            second_point = OTHER['measurements'][1]
-            third_point = OTHER['measurements'][2]
-
-            dist = distance_between(third_point, second_point)
-
-            early_vector = vector_minus(second_point, first_point)
-            latter_vector = vector_minus(third_point, second_point)
-
-            angle_between = get_angle_between(early_vector, latter_vector) + atan2(latter_vector[1], latter_vector[0])#radian
-
-            x_vec_pred = cos(angle_between) * dist
-            y_vec_pred = sin(angle_between) * dist
-
-            xy_estimate = vector_addition(measurement, [x_vec_pred, y_vec_pred])
-
-        else:
-            xy_estimate = measurement
-
+        xy_estimate = OTHER.predict_next_point(measurement)
 
     return xy_estimate, OTHER 
 
@@ -185,6 +220,11 @@ def demo_grading_visualize(estimate_next_pos_fcn, target_bot, OTHER = None):
         target_bot.move_in_circle()
         true_position = (target_bot.x, target_bot.y)
         error = distance_between(position_guess, true_position)
+
+        if args.verbose:
+            print "Real: {}\t Expected: {}".format(true_position, position_guess)
+            print "Err: {}".format(error)
+
         if error <= distance_tolerance:
             print "You got it right! It took you ", ctr, " steps to localize."
             localized = True
@@ -220,6 +260,10 @@ def demo_grading(estimate_next_pos_fcn, target_bot, OTHER = None, visualization=
             target_bot.move_in_circle()
             true_position = (target_bot.x, target_bot.y)
             error = distance_between(position_guess, true_position)
+            if args.verbose:
+                print "Real: {}\t Expected: {}".format(true_position, position_guess)
+                print "Err: {}".format(error)
+                
             if error <= distance_tolerance:
                 print "You got it right! It took you ", ctr, " steps to localize."
                 localized = True
@@ -243,4 +287,4 @@ test_target = robot(2.1, 4.3, 0.5, 2*pi / 34.0, 1.5)
 test_target.set_noise(0.0, 0.0, 0.0)
 
 print test_target
-demo_grading(estimate_next_pos, test_target, visualization=True)
+demo_grading(estimate_next_pos, test_target, visualization=args.visualize)
