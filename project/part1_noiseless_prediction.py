@@ -70,6 +70,7 @@ parser.add_argument('--visualize',
 
 parser.add_argument('--verbose', 
                     action="store_true",
+                    default=True,
                     help='Verbose the prediction and the robot')
 
 args = parser.parse_args()
@@ -155,7 +156,7 @@ def vector_addition(vector1, vector2):
 #     return xy_estimate, OTHER 
 
 
-from kalmanfilter import KalmanFilter
+from kalman_filter import KalmanFilter
 
 def estimate_next_pos(measurement, OTHER = None):
     """Estimate the next (x, y) position of the wandering Traxbot
@@ -165,10 +166,8 @@ def estimate_next_pos(measurement, OTHER = None):
     # in this order for grading purposes.
     if OTHER == None:
         # First Measurement
-        OTHER = KalmanFilter(1e-10, measurement[0], measurement[1])
-        xy_estimate = measurement
-    else:
-        xy_estimate = OTHER.predict_next_point(measurement)
+        OTHER = KalmanFilter(1e-1)
+    xy_estimate = OTHER.predict_point(measurement)
 
     return xy_estimate, OTHER 
 

@@ -18,6 +18,9 @@ import matplotlib.pyplot as plt
 import argparse
 
 
+
+
+
 class KalmanFilter(object):
     def __init__(self, sigma, init_x, init_y):
         self.x = np.array([[init_x],  # x-coordinate
@@ -111,7 +114,7 @@ class KalmanFilter(object):
                       [y]])
 
         y = z - self.h.dot(self.x)
-        S = self.h.dot(self.p).dot(self.h.transpose()) + self.r
+        S = self.r + self.h.dot(self.p).dot(self.h.transpose()) 
         K = self.p.dot(self.h.transpose()).dot(np.linalg.inv(S))
 
 
@@ -181,8 +184,10 @@ if __name__ == '__main__':
 
 
     if visualize:
-        plt.scatter([x[0] for x in measurements], [x[1] for x in measurements], c="red", alpha=0.5)
-        plt.scatter([x[0] for x in result], [x[1] for x in result], c="blue", alpha=0.5)
+        plt.scatter([x[0] for x in measurements], [x[1] for x in measurements], c="red", alpha=0.5, label="actual")
+        plt.scatter([x[0] for x in result], [x[1] for x in result], c="blue", alpha=0.5, label="prediction")
+        plt.legend()
+        plt.grid('on')
         plt.show()
 
         plt.plot(error_list)
