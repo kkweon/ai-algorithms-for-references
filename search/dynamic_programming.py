@@ -1,4 +1,5 @@
 from pprint import pprint
+
 # ----------
 # User Instructions:
 #
@@ -10,20 +11,20 @@ from pprint import pprint
 # assign that cell a value of 99.
 # ----------
 import sys
-grid = [[0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 0, 0, 0, 1, 0]]
+
+grid = [
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0],
+]
 goal = [len(grid) - 1, len(grid[0]) - 1]
 cost = 1  # the cost associated with moving from a cell to an adjacent one
 OBSTACLE = 99
-delta = [[-1, 0],  # go up
-         [0, -1],  # go left
-         [1, 0],  # go down
-         [0, 1]]  # go right
+delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # go up  # go left  # go down  # go right
 
-delta_name = ['^', '<', 'v', '>']
+delta_name = ["^", "<", "v", ">"]
 
 
 def get_nearby_position(grid, location, delta, history):
@@ -69,7 +70,9 @@ def compute_value(grid, goal, cost):
     cost (int)          : cost of one step 
     """
     row, col = goal
-    value = [[99 for col in xrange(len(grid[0]))] for row in xrange(len(grid))] # create a copy of the grid
+    value = [
+        [99 for col in xrange(len(grid[0]))] for row in xrange(len(grid))
+    ]  # create a copy of the grid
     value[row][col] = 0
     history = set()
     history.add((row, col))
@@ -79,18 +82,19 @@ def compute_value(grid, goal, cost):
         tmp_nearby_set = set()
         for child in children:
             if hit_obstacle(grid, child):
-                #value[child[0]][child[1]] = OBSTACLE
+                # value[child[0]][child[1]] = OBSTACLE
                 continue
             else:
                 value[child[0]][child[1]] = step + cost
                 grand_children = get_nearby_position(grid, child, delta, history)
                 for gc in grand_children:
                     tmp_nearby_set.add(gc)
-            
+
         step += 1
         children = tmp_nearby_set
 
     return value
+
 
 result = compute_value(grid, goal, cost)
 pprint(result)

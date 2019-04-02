@@ -4,7 +4,8 @@ import pytest
 
 
 def radix_sort(xs: List[int]) -> None:
-    if not xs: return
+    if not xs:
+        return
 
     def helper(exp: int):
         """

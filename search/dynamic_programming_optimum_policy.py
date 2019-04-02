@@ -1,43 +1,44 @@
 from pprint import pprint
+
 # ----------
 # User Instructions:
-# 
+#
 # Write a function optimum_policy that returns
 # a grid which shows the optimum policy for robot
 # motion. This means there should be an optimum
 # direction associated with each navigable cell from
 # which the goal can be reached.
-# 
-# Unnavigable cells as well as cells from which 
-# the goal cannot be reached should have a string 
-# containing a single space (' '), as shown in the 
+#
+# Unnavigable cells as well as cells from which
+# the goal cannot be reached should have a string
+# containing a single space (' '), as shown in the
 # previous video. The goal cell should have '*'.
 # ----------
 
-grid = [[0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 0, 0, 0, 1, 0]]
+grid = [
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0],
+]
 init = [0, 0]
-goal = [len(grid)-1, len(grid[0])-1]
-cost = 1 # the cost associated with moving from a cell to an adjacent one
+goal = [len(grid) - 1, len(grid[0]) - 1]
+cost = 1  # the cost associated with moving from a cell to an adjacent one
 
-delta = [[-1, 0 ], # go up
-         [ 0, -1], # go left
-         [ 1, 0 ], # go down
-         [ 0, 1 ]] # go right
+delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # go up  # go left  # go down  # go right
 
-delta_name = ['^', '<', 'v', '>']
+delta_name = ["^", "<", "v", ">"]
 
-def optimum_policy(grid,goal,cost):
+
+def optimum_policy(grid, goal, cost):
     # ----------------------------------------
     # modify code below
     # ----------------------------------------
     value = [[99 for row in range(len(grid[0]))] for col in range(len(grid))]
     change = True
-    policy = [[' ' for col in xrange(len(grid[0]))] for row in xrange(len(grid))]
-    
+    policy = [[" " for col in xrange(len(grid[0]))] for row in xrange(len(grid))]
+
     while change:
         change = False
 
@@ -55,7 +56,13 @@ def optimum_policy(grid,goal,cost):
                         x2 = x + delta[a][0]
                         y2 = y + delta[a][1]
 
-                        if x2 >= 0 and x2 < len(grid) and y2 >= 0 and y2 < len(grid[0]) and grid[x2][y2] == 0:
+                        if (
+                            x2 >= 0
+                            and x2 < len(grid)
+                            and y2 >= 0
+                            and y2 < len(grid[0])
+                            and grid[x2][y2] == 0
+                        ):
                             v2 = value[x2][y2] + cost
 
                             if v2 < value[x][y]:
@@ -64,5 +71,7 @@ def optimum_policy(grid,goal,cost):
                                 policy[x][y] = delta_name[a]
 
     return policy
+
+
 result = optimum_policy(grid, goal, cost)
 pprint(result)

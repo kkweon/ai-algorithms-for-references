@@ -1,5 +1,6 @@
 from typing import *
 
+
 def merge(xs, aux, lo, mid, hi):
     for i in range(lo, hi + 1):
         aux[i] = xs[i]
@@ -21,6 +22,7 @@ def merge(xs, aux, lo, mid, hi):
         else:
             xs[k] = aux[i]
             i += 1
+
 
 def mergesort(xs: List[int]) -> List[int]:
     """

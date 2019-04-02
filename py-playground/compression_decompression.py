@@ -1,4 +1,3 @@
-
 def decompress(s: str) -> str:
     """
     >>> decompress('abc')
