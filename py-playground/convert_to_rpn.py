@@ -7,7 +7,11 @@ def score(op):
     return ops.get(op, 0)
 
 
-def conver_to_rpn(expression: str) -> str:
+def convert_to_rpn(expression: str) -> str:
+    """
+    >>> conver_to_rpn('1 -2 * 3 - 4 + 5 * 6')
+    '1 2 3 * - 4 5 6 * + -'
+    """
     ret = []
     stack = []
 
