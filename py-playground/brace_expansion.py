@@ -1,16 +1,17 @@
+from typing import *
+
 import pytest
 
-from typing import *
 
 def expand_braces(exp: str) -> List[str]:
     i = 0
-    keywords = {'{', '}'}
+    keywords = {"{", "}"}
 
     def parse_group() -> List[str]:
         nonlocal i
 
         if len(exp) <= i:
-            return [ "" ]
+            return [""]
 
         curr = []
         while i < len(exp) and exp[i] != "}":
@@ -58,8 +59,8 @@ def expand_braces(exp: str) -> List[str]:
         else:
             raise ValueError("Unknown character")
 
-
     return parse_expression()
+
 
 """
 def expand_braces(s: str) -> str:
@@ -99,6 +100,7 @@ def expand_braces(s: str) -> str:
 
     return getitem(s)[0]
 """
+
 
 @pytest.mark.parametrize(
     "input,expected",

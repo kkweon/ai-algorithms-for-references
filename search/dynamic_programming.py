@@ -1,5 +1,3 @@
-from pprint import pprint
-
 # ----------
 # User Instructions:
 #
@@ -11,6 +9,7 @@ from pprint import pprint
 # assign that cell a value of 99.
 # ----------
 import sys
+from pprint import pprint
 
 grid = [
     [0, 1, 0, 0, 0, 0],

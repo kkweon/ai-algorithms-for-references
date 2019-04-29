@@ -6,6 +6,7 @@
 
 from math import *
 
+
 class matrix:
     
     # implements basic operations of a matrix class

@@ -1,5 +1,6 @@
 import random
 
+
 def compute_pi():
     """
     Area = pi * r^2
@@ -28,14 +29,16 @@ def compute_pi():
     inside = 0
 
     for _ in range(n_count):
-        a = random.random() * 2 - 1 # [-1, 1)
+        a = random.random() * 2 - 1  # [-1, 1)
         b = random.random() * 2 - 1
 
-        if a**2 + b**2 <= 1:
+        if a ** 2 + b ** 2 <= 1:
             inside += 1
 
     return inside / n_count * 4
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

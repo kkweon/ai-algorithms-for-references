@@ -17,9 +17,8 @@
 # Only modify code at the bottom!
 # ------------
  
-from math import *
 import random
-
+from math import *
 
 # ------------------------------------------------
 # 
@@ -164,8 +163,3 @@ def run(param1, param2, param3):
         print myrobot
 # Call your function with parameters of (0.2, 3.0, and 0.004)
 run(0.2, 3.0, 0.004)
-
-
-
-
-

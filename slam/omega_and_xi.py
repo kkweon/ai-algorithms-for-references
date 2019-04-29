@@ -11,9 +11,8 @@
 
 
  
-from math import *
 import random
-
+from math import *
 
 #===============================================================
 #
@@ -367,5 +366,3 @@ def doit(initial_pos, move1, move2):
     return mu
 
 print doit(-3, 5, 3)
-
-

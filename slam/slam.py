@@ -38,8 +38,10 @@
 #
 # Uncomment the test cases at the bottom of this document.
 # Your output should be identical to the given results.
-from math import *
 import random
+from math import *
+
+
 #===============================================================
 #
 # SLAM in a recto linear world (we avoid non-linearities)

@@ -13,9 +13,8 @@
 # No cheating!
 # ------------
  
-from math import *
 import random
-
+from math import *
 
 # ------------------------------------------------
 # 

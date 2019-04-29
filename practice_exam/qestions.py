@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def pprint(matrix):
     print "["
     for row in matrix:

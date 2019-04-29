@@ -83,6 +83,7 @@ def search(grid, init, goal, cost, heuristic):
 A, B = search(grid, init, goal, cost, heuristic)
 
 from pprint import pprint
+
 pprint(A)
 print ""
 pprint(B)

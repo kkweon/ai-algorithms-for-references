@@ -1,5 +1,6 @@
-from math import *
 import random
+from math import *
+
 
 class matrix:
     

@@ -1,5 +1,6 @@
 from typing import *
 
+
 def find_length_of_LIS(xs: List[int]) -> int:
     """
     >>> find_length_of_LIS([5,7,4,-3,9,1])

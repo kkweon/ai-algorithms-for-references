@@ -42,9 +42,8 @@
 #    if you pass both test cases, you should be
 #    marked correct on the homework.
 
-from math import *
 import random
-
+from math import *
 
 # ------------------------------------------------
 # 
@@ -797,5 +796,3 @@ answer_omega2      = matrix([[0.22871751620895048, 0.0, -0.11351536555795691, 0.
 
 result = online_slam(testdata2, 6, 2, 3.0, 4.0)
 solution_check(result, answer_mu2, answer_omega2)
-
-

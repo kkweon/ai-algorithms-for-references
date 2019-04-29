@@ -1,5 +1,7 @@
 import numpy as np
+
 import matplotlib.pyplot as plt
+
 
 class Filter:
     def __init__(self, filter=None):
@@ -235,4 +237,3 @@ if __name__ == '__main__':
     # measurements = create_function_data(np.sin, np.arange(-10, 10, 0.001), noise=0.1)
     # result, err_list = action(filter, measurements)
     # plot(measurements, result, err_list, radius = 20) 
-

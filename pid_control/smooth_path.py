@@ -16,6 +16,11 @@
 
 from copy import deepcopy
 
+import numpy as np
+
+# Visualization
+import matplotlib.pyplot as plt
+
 # thank you to EnTerr for posting this on our discussion forum
 
 
@@ -71,9 +76,6 @@ def smooth(path, weight_data=0.5, weight_smooth=0.1, tolerance=0.000001):
 
 printpaths(path, smooth(path, weight_data=0.5))
 
-# Visualization
-import matplotlib.pyplot as plt
-import numpy as np
 
 plt.scatter(np.array(smooth(path))[:, 0],np.array(smooth(path))[:, 1], marker='o', c='blue', label="New Path")
 plt.scatter(np.array(path)[:, 0], np.array(path)[:, 1], marker='^', c='red', label="original point")

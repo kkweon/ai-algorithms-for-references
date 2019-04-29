@@ -13,8 +13,8 @@
 #
 # Add your code at line 356.
 
-from math import *
 import random
+from math import *
 
 #===============================================================
 #

@@ -53,15 +53,15 @@
 # you will be marked correct and we will tell you how many steps it took
 # before your function successfully located the target bot.
 
-# These import steps give you access to libraries which you may (or may
-# not) want to use.
-from robot import *
-from math import *
-from matrix import *
-import random
-import numpy as np
 import argparse
+import random
+from math import *
 
+import numpy as np
+
+from kalman_filter import KalmanFilter
+from matrix import *
+from robot import *
 
 parser = argparse.ArgumentParser(description='Part 1. Noiseless Prediction')
 parser.add_argument('--visualize', 
@@ -156,7 +156,6 @@ def vector_addition(vector1, vector2):
 #     return xy_estimate, OTHER 
 
 
-from kalman_filter import KalmanFilter
 
 def estimate_next_pos(measurement, OTHER = None):
     """Estimate the next (x, y) position of the wandering Traxbot

@@ -1,5 +1,6 @@
-from math import *
 import random
+from math import *
+
 
 # helper function to map all angles onto [-pi, pi]
 def angle_trunc(a):

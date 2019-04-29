@@ -10,8 +10,8 @@
 # need to include the equations shown in the video.
 #
 
-from math import *
 import random
+from math import *
 
 # don't change the noise paameters
 

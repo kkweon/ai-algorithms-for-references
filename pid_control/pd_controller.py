@@ -15,9 +15,9 @@
 # Only modify code at the bottom!
 # ------------
  
-from math import *
 import random
 from copy import deepcopy
+from math import *
 
 # ------------------------------------------------
 # 
@@ -154,6 +154,3 @@ def run(param1, param2):
 
 # Call your function with parameters of 0.2 and 3.0 and print results
 run(0.2, 3.0)
-
-
-

@@ -12,13 +12,12 @@ X = [[x],
 
 """
 
-from matrix import *
-import numpy as np
-import matplotlib.pyplot as plt
 import argparse
 
+import numpy as np
 
-
+import matplotlib.pyplot as plt
+from matrix import *
 
 
 class KalmanFilter(object):

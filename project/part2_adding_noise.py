@@ -24,12 +24,11 @@
 # you will be marked correct and we will tell you how many steps it took
 # before your function successfully located the target bot.
 
-# These import steps give you access to libraries which you may (or may
-# not) want to use.
-from robot import *  # Check the robot.py tab to see how this works.
-from math import *
-from matrix import *  # Check the matrix.py tab to see how this works.
 import random
+from math import *
+
+from matrix import *  # Check the matrix.py tab to see how this works.
+from robot import *  # Check the robot.py tab to see how this works.
 
 # This is the function you have to write. Note that measurement is a
 # single (x, y) point. This function will have to be called multiple

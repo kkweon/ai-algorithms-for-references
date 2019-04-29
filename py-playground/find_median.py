@@ -1,5 +1,6 @@
 from typing import *
 
+
 def find_median(xs: List[int]) -> int:
     """
     >>> find_median([10,2,8,4,6,5,7,3,9,1])
@@ -42,7 +43,8 @@ def find_median(xs: List[int]) -> int:
         return None
 
     i = find_lowest_k((len(xs) >> 1) + 1)
-    if i is None: return None
+    if i is None:
+        return None
 
     if len(xs) & 1:
         return xs[i]

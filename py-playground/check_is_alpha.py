@@ -13,5 +13,6 @@ def is_alpha(x: str) -> bool:
     False
     """
     # return x.isalpha()
-    if not x: return False
-    return all('a' <= c <= 'z' or 'A' <= c <= 'Z' for c in x)
+    if not x:
+        return False
+    return all("a" <= c <= "z" or "A" <= c <= "Z" for c in x)

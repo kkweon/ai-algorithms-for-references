@@ -5,9 +5,8 @@
 # Don't modify the code below. Please enter
 # your code at the bottom.
 
-from math import *
 import random
-
+from math import *
 
 landmarks  = [[20.0, 20.0], [80.0, 80.0], [20.0, 80.0], [80.0, 20.0]]
 world_size = 100.0
@@ -121,6 +120,3 @@ w = []
 #insert code here!
 w = [p[_].measurement_prob(Z) for _ in xrange(N)]
 print w #Please print w for grading purposes.
-
-
-

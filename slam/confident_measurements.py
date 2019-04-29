@@ -5,8 +5,9 @@
 # confident last measurement. Do this by adding a
 # factor of 5 into your Omega and Xi matrices
 # as described in the video.
-from math import *
 import random
+from math import *
+
 #===============================================================
 #
 # SLAM in a rectolinear world (we avoid non-linearities)

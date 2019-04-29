@@ -18,9 +18,8 @@
 # Only modify code at the bottom!
 # ------------
 
-from math import *
 import random
-
+from math import *
 
 # ------------------------------------------------
 #

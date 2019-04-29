@@ -1,5 +1,7 @@
 import numpy as np
+
 import matplotlib.pyplot as plt
+
 
 class KalmanFilter(object):
     def __init__(self, sigma):
@@ -168,4 +170,3 @@ if __name__ == '__main__':
 
     plt.tight_layout()
     plt.show()
-

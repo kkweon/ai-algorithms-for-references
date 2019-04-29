@@ -18,9 +18,8 @@
 # calling it with different robot locations and making
 # sure that it returns the correct crosstrack error.
 
-from math import *
 import random
-
+from math import *
 
 # ------------------------------------------------
 #

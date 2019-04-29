@@ -15,6 +15,7 @@ def find_kth_largest(nums: List[int], k) -> int:
     >>> find_kth_largest([], 3)
     -1
     """
+
     def quickselect(xs, l, r, k):
         while l <= r:
             pivot_idx = (l + r) >> 1
